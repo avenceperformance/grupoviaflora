@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FCF8FB">
+  <meta name="description" content="Entre no grupo de promoções da Via Flora Aromaterapia. Ofertas exclusivas de óleos essenciais, aromas e cuidados naturais em Campo Grande.">
+  <title>Grupo de promoções | Via Flora Aromaterapia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/foto-principal.webp">
+  <script>
+    const LINK_DO_GRUPO = "https://chat.whatsapp.com/EXM9noMRpnj6S79zg8TKqV";
+    const PIXEL_ID = "COLE_AQUI_O_ID_DO_PIXEL";
+
+
+    // O Pixel só é ativado depois que você inserir um ID numérico válido.
+    const PIXEL_ATIVO = /^\d+$/.test(PIXEL_ID);
+    if (PIXEL_ATIVO) {
+      !function(f,b,e,v,n,t,s) {
+        if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+        s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+      }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.review-track');
+      const cards = Array.from(track.querySelectorAll('.review-print'));
+      const previous = document.querySelector('.review-prev');
+      const next = document.querySelector('.review-next');
+      const counter = document.querySelector('.review-counter');
+      const dialog = document.querySelector('#review-dialog');
+      dialog.querySelector('.review-close').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+      track.querySelectorAll('.review-open').forEach(button => {
+        button.addEventListener('click', () => {
+          const original = button.querySelector('img');
+          const expanded = dialog.querySelector('img');
+          expanded.src = original.src;
+          expanded.alt = original.alt;
+          dialog.showModal();
+        });
+      });
+      let current = 0;
+      const sync = () => {
+        const width = cards[0].getBoundingClientRect().width + 12;
+        current = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / width)));
+        counter.textContent = (current + 1) + ' / ' + cards.length;
+        previous.disabled = current === 0;
+        next.disabled = current === cards.length - 1;
+      };
+      const move = direction => {
+        const width = cards[0].getBoundingClientRect().width + 12;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const destination = Math.max(0, Math.min(cards.length - 1, current + direction));
+        track.scrollTo({left: destination * width, behavior: reduceMotion ? 'auto' : 'smooth'});
+      };
+      previous.addEventListener('click', () => move(-1));
+      next.addEventListener('click', () => move(1));
+      track.addEventListener('scroll', sync, {passive:true});
+      track.addEventListener('keydown', event => {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          move(event.key === 'ArrowRight' ? 1 : -1);
+        }
+      });
+      sync();
+      document.querySelectorAll('[data-grupo]').forEach(link => {
+        link.href = LINK_DO_GRUPO;
+        link.addEventListener('click', () => {
+          if (PIXEL_ATIVO && typeof window.fbq === 'function') {
+            try { window.fbq('track', 'Lead'); } catch (_) {}
+          }
+        });
+      });
+    });
+  </script>
+  <style>
+    :root{--roxo:#8E2A8B;--magenta:#C2268F;--ameixa:#4A1546;--lilas:#F5E9F3;--fundo:#FCF8FB;--verde:#1FA855}
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%;scroll-padding-bottom:110px}
+    body{margin:0;background:var(--fundo);color:var(--ameixa);font-family:Lato,Arial,sans-serif;font-size:16px;line-height:1.6;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+    img{display:block;max-width:100%;height:auto}
+    [hidden]{display:none!important}
+    svg{display:block}
+    .definitions{position:absolute;width:0;height:0;overflow:hidden}
+    .page{position:relative;z-index:1;width:100%;max-width:520px;margin:auto;padding:0 18px}
+    .hero{text-align:center;position:relative;isolation:isolate;padding:20px 0 30px;overflow:hidden}
+    .logo{width:118px;height:118px;object-fit:contain;margin:0 auto 20px;background:transparent}
+    .mandala{position:absolute;z-index:-1;pointer-events:none;width:440px;height:440px;opacity:.10}
+    .hero>.mandala{top:82px;right:-174px;transform:rotate(12deg)}
+    .badge{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;background:var(--lilas);border:1px solid #8e2a8b16;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.035em}
+    .badge svg{width:14px;height:14px;fill:none;stroke:var(--roxo);stroke-width:1.5}
+    h1,h2{font-family:'Cormorant Garamond',Georgia,serif;text-transform:uppercase;font-weight:600;letter-spacing:.035em;line-height:1.12;text-wrap:balance}
+    h1{font-size:clamp(31px,8.5vw,43px);margin:18px auto 14px}
+    h1 span{color:var(--magenta)}
+    h2{font-size:clamp(28px,7.2vw,34px);margin:0 0 23px}
+    p{margin:0}
+    .intro{max-width:430px;margin:auto;font-size:16px;line-height:1.6}
+    .hero-photo{width:100%;height:clamp(155px,44vw,215px);object-fit:cover;object-position:50% 50%;border-radius:20px;margin:22px 0 0}
+    .cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:60px;padding:16px 12px;border-radius:14px;background:var(--verde);color:#fff;text-decoration:none;font-size:18px;font-weight:700;line-height:1.35;box-shadow:0 7px 18px #1fa85525;-webkit-tap-highlight-color:transparent}
+    .cta svg{width:24px;height:24px;flex:none;fill:currentColor}
+    .cta:focus-visible{outline:3px solid var(--ameixa);outline-offset:4px}
+    .cta:active{background:#198d47}
+    .reassurance{font-size:13px;margin-top:11px}
+    .benefits{background:var(--lilas);border-radius:24px;padding:28px 21px}
+    .benefits h2{text-align:center}
+    .benefits ul{list-style:none;padding:0;margin:0}
+    .benefits li{display:grid;grid-template-columns:28px 1fr;gap:13px;padding:16px 0;border-top:1px solid #8e2a8b20}
+    .benefits li:first-child{border-top:0;padding-top:0}
+    .benefits li:last-child{padding-bottom:0}
+    .line-icon{width:26px;height:26px;fill:none;stroke:var(--roxo);stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+    .benefits p{font-size:15px;line-height:1.6}
+    .benefits strong{display:block;font-size:16px;margin-bottom:3px}
+    .products{padding:36px 0 30px}
+    .products h2{text-align:center;max-width:390px;margin-left:auto;margin-right:auto}
+    .product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    figure{margin:0}
+    .product{position:relative;isolation:isolate;overflow:hidden;border-radius:16px;aspect-ratio:1}
+    .product img{width:100%;height:100%;object-fit:cover}
+    .product:after{content:'';position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(45,12,37,.76));z-index:1}
+    .product figcaption{position:absolute;bottom:13px;left:12px;right:9px;z-index:2;color:white;font-size:15px;font-weight:700;line-height:1.3}
+    .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;list-style:none;padding:0;margin:20px 0 0}
+    .pills li{padding:5px 10px;border:1px solid #8e2a8b20;border-radius:99px;background:var(--lilas);font-size:12px;line-height:1.5}
+    .closing{position:relative;isolation:isolate;overflow:hidden;text-align:center;background:var(--roxo);color:white;border-radius:24px;padding:34px 22px 29px}
+    .closing>.mandala{top:-66px;left:50%;transform:translateX(-50%) rotate(12deg);opacity:.16;filter:brightness(0) invert(1)}
+    .closing h2{margin-bottom:15px;font-size:34px}
+    .closing p{margin:0 auto 23px;max-width:350px;font-size:16px}
+    .closing .cta:focus-visible{outline-color:#fff}
+    footer{text-align:center;padding:28px 5px 24px;font-size:13px;line-height:1.65}
+    footer p:first-child{max-width:310px;margin:0 auto 12px}
+    footer p:last-child{color:var(--roxo);margin-top:7px}
+    .sticky{position:fixed;z-index:20;bottom:0;left:0;right:0;background:rgba(252,248,251,.98);border-top:1px solid #8e2a8b18;padding:10px 18px calc(10px + env(safe-area-inset-bottom,0px))}
+    .sticky .cta{max-width:484px;margin:auto}
+    @media(min-width:560px){.hero{padding-top:28px}.logo{width:128px;height:128px}.sticky{padding-top:12px}}
+    @media(max-width:350px){.cta{font-size:16px}.benefits{padding:25px 16px}.product figcaption{font-size:13px}.badge{font-size:11px}.closing{padding-left:17px;padding-right:17px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+    /* Movimento discreto, apenas com transform, sem vídeo ou novas imagens. */
+    .ambient{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+    .ambient span{position:absolute;width:min(82vw,420px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#c2268f13 0%,#c2268f07 36%,transparent 70%);animation:aroma-flutua 26s ease-in-out infinite alternate}
+    .ambient span:nth-child(1){top:8%;right:-32%;animation-delay:-8s}
+    .ambient span:nth-child(2){top:42%;left:-40%;background:radial-gradient(circle,#8e2a8b10 0%,#8e2a8b05 36%,transparent 70%);animation-duration:32s;animation-delay:-18s}
+    .ambient span:nth-child(3){bottom:-5%;right:-34%;animation-duration:29s;animation-delay:-12s}
+    .hero>.mandala{animation:mandala-topo 30s ease-in-out infinite alternate}
+    .closing>.mandala{animation:mandala-final 32s ease-in-out infinite alternate}
+    @keyframes aroma-flutua{from{transform:translate3d(0,-15px,0) scale(.96)}to{transform:translate3d(-25px,30px,0) scale(1.06)}}
+    @keyframes mandala-topo{from{transform:translate3d(0,0,0) rotate(9deg)}to{transform:translate3d(-8px,12px,0) rotate(17deg)}}
+    @keyframes mandala-final{from{transform:translateX(-50%) rotate(9deg)}to{transform:translateX(-50%) rotate(17deg)}}
+    @media(prefers-reduced-motion:reduce){.ambient span,.hero>.mandala,.closing>.mandala{animation:none}}
+
+    .google-reviews{text-align:center;padding:4px 0 34px}
+    .google-label{display:inline-block;color:var(--roxo);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px}
+    .google-reviews h2{margin-bottom:12px}
+    .review-intro{font-size:15px;line-height:1.6;max-width:330px;margin:0 auto 20px}
+    .review-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;padding:2px 1px 5px;text-align:left}
+    .review-track::-webkit-scrollbar{display:none}
+    .review-print{flex:0 0 calc(100% - 24px);height:330px;scroll-snap-align:start;border:1px solid #8e2a8b24;border-radius:18px;padding:6px;background:#242528;overflow:hidden}
+    .review-print img{width:100%;height:100%;object-fit:contain;border-radius:10px}
+    .review-print:focus-visible,.review-arrow:focus-visible{outline:2px solid var(--roxo);outline-offset:3px}
+    .review-navigation{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:13px}
+    .review-arrow{width:44px;height:44px;display:grid;place-items:center;border:1px solid #8e2a8b28;border-radius:50%;background:transparent;color:var(--roxo);cursor:pointer}
+    .review-arrow:disabled{opacity:.3;cursor:default}
+    .review-arrow svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .review-counter{min-width:44px;font-size:12px;color:var(--ameixa)}
+
+    .review-help{font-size:12px;color:#74416d;margin:-8px 0 15px}
+    .review-open{display:block;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:zoom-in;border-radius:12px}
+    .review-open:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+    #review-dialog{width:min(94vw,580px);max-height:92vh;max-height:92dvh;overflow:auto;border:1px solid #8e2a8b40;border-radius:20px;padding:12px;background:#242528;color:white}
+    #review-dialog::backdrop{background:rgba(30,10,29,.8)}
+    #review-dialog img{width:100%;height:auto;max-height:calc(92vh - 80px);max-height:calc(92dvh - 80px);object-fit:contain;margin:auto}
+    .review-close{display:grid;place-items:center;width:44px;height:44px;margin:0 0 8px auto;background:transparent;color:white;border:1px solid #ffffff50;border-radius:50%;font-size:28px;line-height:1;cursor:pointer}
+    .review-close:focus-visible{outline:2px solid white;outline-offset:3px}
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+  <svg class="definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="logo-transparente" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 -1 0 0 1"/>
+        <feComponentTransfer result="mascara-logo"><feFuncA type="linear" slope="4" intercept="-.1"/></feComponentTransfer>
+        <feComposite in="SourceGraphic" in2="mascara-logo" operator="in"/>
+      </filter>
+
+      <symbol id="whatsapp" viewBox="0 0 24 24">
+        <path d="M20.52 3.48A11.86 11.86 0 0 0 12.05 0C5.46 0 .1 5.36.1 11.95c0 2.1.55 4.16 1.6 5.98L0 24l6.25-1.64a11.93 11.93 0 0 0 5.8 1.48h.01C18.65 23.84 24 18.48 24 11.89a11.85 11.85 0 0 0-3.48-8.41zM12.06 21.82a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.24-.37a9.87 9.87 0 0 1-1.52-5.26c0-5.48 4.46-9.94 9.94-9.94a9.87 9.87 0 0 1 7.03 2.91 9.86 9.86 0 0 1 2.9 7.03c0 5.48-4.46 9.87-9.99 9.87zm5.46-7.43c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.18.2-.35.23-.65.08-.3-.15-1.26-.47-2.4-1.49-.89-.79-1.49-1.77-1.67-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.62-.93-2.22-.24-.58-.49-.5-.68-.51h-.57c-.2 0-.53.08-.8.38-.28.3-1.05 1.02-1.05 2.49s1.07 2.89 1.22 3.09c.15.2 2.11 3.23 5.11 4.53.71.3 1.27.49 1.7.62.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/>
+      </symbol>
+      <!-- Extrai somente o contorno da mandala original, sem alterar a logo. -->
+      <filter id="flor-linha" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 -1 0 0 1"/>
+        <feComponentTransfer result="silhueta"><feFuncA type="linear" slope="4" intercept="-.6"/></feComponentTransfer>
+        <feMorphology in="silhueta" operator="erode" radius="1.3" result="interior"/>
+        <feComposite in="silhueta" in2="interior" operator="out" result="borda"/>
+        <feFlood flood-color="#8E2A8B"/>
+        <feComposite in2="borda" operator="in"/>
+      </filter>
+      <symbol id="mandala" viewBox="70 10 510 480"><image href="assets/logo-via-flora.jpeg" width="640" height="640" filter="url(#flor-linha)"/></symbol>
+    </defs>
+  </svg>
+  <main class="page">
+    <header class="hero">
+      <svg class="mandala" aria-hidden="true"><use href="#mandala"/></svg>
+      <svg class="logo" viewBox="0 0 640 640" role="img" aria-label="Via Flora Aromaterapia e Bem estar"><image href="assets/logo-via-flora.jpeg" width="640" height="640" filter="url(#logo-transparente)"/></svg>
+      <div class="badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Exclusivo pra Campo Grande</div>
+      <h1>As melhores promoções da Via Flora saem <span>só no grupo</span></h1>
+      <p class="intro">Óleos essenciais, aromatizadores e cuidados naturais pra pele e cabelo, com preço que a loja não vê.</p>
+
+      <a class="cta" data-grupo href="https://chat.whatsapp.com/EXM9noMRpnj6S79zg8TKqV" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#whatsapp"/></svg>Entrar no grupo agora</a>
+      <p class="reassurance">É grátis. Você sai quando quiser.</p>
+      <img class="hero-photo" src="assets/foto-principal.webp" width="1100" height="489" fetchpriority="high" decoding="async" alt="Bancada de mármore claro com lavandas, velas acesas, óleos essenciais e um difusor de cerâmica com névoa suave">
+    </header>
+
+    <section class="benefits" aria-labelledby="beneficios">
+      <h2 id="beneficios">O que você ganha lá dentro</h2>
+      <ul>
+        <li><svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z"/></svg><p><strong>Ofertas relâmpago.</strong> Promoções que duram poucas horas e acabam.</p></li>
+        <li><svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg><p><strong>Lançamentos antes de todo mundo.</strong> Você vê as novidades primeiro e garante a sua.</p></li>
+        <li><svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v4H3zM5 12v9h14v-9M12 8v13M12 8H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/></svg><p><strong>Condições que a loja não tem.</strong> Kits, brindes e descontos só pra quem tá no grupo.</p></li>
+      </ul>
+    </section>
+
+    <section class="products" aria-labelledby="produtos">
+      <h2 id="produtos">Pra sua casa, sua pele e seu cabelo</h2>
+      <div class="product-grid">
+        <figure class="product"><img src="assets/foto-oleos.webp" width="640" height="640" loading="lazy" decoding="async" alt="Gota de óleo essencial sobre um frasco âmbar"><figcaption>Óleos essenciais</figcaption></figure>
+        <figure class="product"><img src="assets/foto-difusor.webp" width="640" height="640" loading="lazy" decoding="async" alt="Difusor de cerâmica branca com névoa em uma sala com almofadas lilás"><figcaption>Difusores</figcaption></figure>
+        <figure class="product"><img src="assets/foto-velas.webp" width="640" height="640" loading="lazy" decoding="async" alt="Velas acesas, essências e flores roxas secas"><figcaption>Velas e essências</figcaption></figure>
+        <figure class="product"><img src="assets/foto-cuidado.webp" width="640" height="640" loading="lazy" decoding="async" alt="Mulher aplicando uma gota de óleo vegetal no pulso"><figcaption>Cuidado natural</figcaption></figure>
+      </div>
+      <ul class="pills" aria-label="Produtos da Via Flora"><li>Óleos essenciais WNF</li><li>Florais</li><li>Aromatizadores e difusores</li><li>Essências e velas</li><li>Óleos vegetais</li><li>Cuidado natural pra pele</li><li>Cuidado natural pro cabelo</li></ul>
+    </section>
+
+
+
+    <section class="google-reviews" aria-labelledby="titulo-google">
+      <span class="google-label">Experiências reais</span>
+      <h2 id="titulo-google">Nossos comentários no Google</h2>
+      <p class="review-intro">Um pouquinho de quem já passou pela Via Flora.</p>
+      <p class="review-help">Deslize para ver mais. Toque no print para ampliar.</p>
+      <div class="review-carousel">
+        <div class="review-track" role="region" aria-roledescription="carrossel" aria-label="Comentários de clientes no Google">
+          <figure class="review-print" aria-label="Print de avaliação 1 de 6">
+            <button type="button" class="review-open" aria-label="Ampliar Avaliação de Ana Albuquerque, cinco estrelas, editada há quatro meses">
+              <img src="assets/print-google-1.jpeg" alt="Avaliação de Ana Albuquerque, cinco estrelas, editada há quatro meses" decoding="async" width="1320" height="1420">
+            </button>
+          </figure>
+          <figure class="review-print" aria-label="Print de avaliação 2 de 6">
+            <button type="button" class="review-open" aria-label="Ampliar Avaliação de Larissa Colombo, cinco estrelas, há cinco meses">
+              <img src="assets/print-google-2.jpeg" alt="Avaliação de Larissa Colombo, cinco estrelas, há cinco meses" decoding="async" width="1320" height="1420">
+            </button>
+          </figure>
+          <figure class="review-print" aria-label="Print de avaliação 3 de 6">
+            <button type="button" class="review-open" aria-label="Ampliar Avaliação de Viviane Rodrigues Pereira, cinco estrelas, há cinco meses">
+              <img src="assets/print-google-3.jpeg" alt="Avaliação de Viviane Rodrigues Pereira, cinco estrelas, há cinco meses" decoding="async" width="1320" height="1420">
+            </button>
+          </figure>
+          <figure class="review-print" aria-label="Print de avaliação 4 de 6">
+            <button type="button" class="review-open" aria-label="Ampliar Avaliação de edyel correia, cinco estrelas, há cinco meses">
+              <img src="assets/print-google-4.jpeg" alt="Avaliação de edyel correia, cinco estrelas, há cinco meses" decoding="async" width="1320" height="1420">
+            </button>
+          </figure>
+          <figure class="review-print" aria-label="Print de avaliação 5 de 6">
+            <button type="button" class="review-open" aria-label="Ampliar Avaliação de Edyel Maxsander, cinco estrelas, há sete meses">
+              <img src="assets/print-google-5.jpeg" alt="Avaliação de Edyel Maxsander, cinco estrelas, há sete meses" decoding="async" width="1320" height="1420">
+            </button>
+          </figure>
+          <figure class="review-print" aria-label="Print de avaliação 6 de 6">
+            <button type="button" class="review-open" aria-label="Ampliar Avaliação de Pandorah 691, cinco estrelas, há oito meses">
+              <img src="assets/print-google-6.jpeg" alt="Avaliação de Pandorah 691, cinco estrelas, há oito meses" decoding="async" width="1320" height="1420">
+            </button>
+          </figure>
+        </div>
+        <div class="review-navigation">
+          <button class="review-arrow review-prev" type="button" aria-label="Comentário anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+          <span class="review-counter" aria-live="polite">1 / 6</span>
+          <button class="review-arrow review-next" type="button" aria-label="Próximo comentário"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="convite">
+      <svg class="mandala" aria-hidden="true"><use href="#mandala"/></svg>
+      <h2 id="convite">A próxima promoção já vai sair</h2>
+      <p>Quem tá no grupo aproveita primeiro. Entra agora e não fica de fora.</p>
+      <a class="cta" data-grupo href="https://chat.whatsapp.com/EXM9noMRpnj6S79zg8TKqV" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#whatsapp"/></svg>Quero entrar no grupo</a>
+    </section>
+
+    <footer>
+      <p>Via Flora Aromaterapia e Bem estar. Aqui o essencial é cuidar de você.</p>
+      <p>Shopping Norte Sul Plaza, Campo Grande MS</p>
+      <p>@viaflora.aromaterapia</p>
+    </footer>
+  </main>
+  <div class="sticky">
+    <a class="cta" data-grupo href="https://chat.whatsapp.com/EXM9noMRpnj6S79zg8TKqV" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#whatsapp"/></svg>Entrar no grupo VIP</a>
+  </div>
+  <dialog id="review-dialog" aria-label="Avaliação real do Google ampliada">
+    <button type="button" class="review-close" aria-label="Fechar avaliação">×</button>
+    <img alt="Avaliação real do Google ampliada">
+  </dialog>
+</body>
+</html>
